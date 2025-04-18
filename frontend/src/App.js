@@ -1,26 +1,19 @@
-import styled from "styled-components";
-import StripePaymentGateway from "./components/StripePaymentGateway/StripePaymentGateway";
-import './App.css';
-
-const App = () => {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import Dashboard from "./components/Dashboard/dashboard";
+function App() {
   return (
-    <Container>
-      <h2>Stripe payment checkout</h2>
-      <StripePaymentGateway />
-    </Container>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login/>} />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute element={<Dashboard/>} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  > h2 {
-    text-transform: uppercase;
-    margin: 2pc;
-  }
-`;
